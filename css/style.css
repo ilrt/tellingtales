@@ -41,6 +41,13 @@ body {
   min-height: 180px;
   object-fit: contain;
   margin-bottom: 5px;
+  /* Performance optimizations for smooth playback */
+  will-change: transform;
+  backface-visibility: hidden;
+  /* Enable hardware acceleration */
+  transform: translateZ(0);
+  /* Smooth video scaling and rendering */
+  image-rendering: optimizeQuality;
 }
 .video-select-container,
 .location-select-container {
@@ -249,6 +256,11 @@ video::-webkit-media-controls-panel {
     max-height: 30vh;
     /* Ensure minimum height for controls visibility */
     min-height: 150px;
+    /* Optimize video rendering performance */
+    will-change: transform;
+    backface-visibility: hidden;
+    /* Smooth video scaling */
+    object-fit: contain;
   }
 
   /* Full height adjustments */
