@@ -1,0 +1,46 @@
+/*! (C) The Hyperaudio Project. MIT @license: en.wikipedia.org/wiki/MIT_License. */
+/* Updated for Version 2.1 */
+
+
+body{
+  font-family: 'Lato', sans-serif;
+}
+
+
+.hyperaudio-transcript .active {
+  /* background-color: #efefef; */
+}
+
+.hyperaudio-transcript .active > .active {
+  /* background-color: #ccf; */
+  /* text-decoration: #00f underline; */
+  /*font-weight: bold;*/
+  color: #1780c2 !important; 
+  text-decoration-thickness: 3px;
+}
+
+.hyperaudio-transcript .annotation, .hyperaudio-transcript .parannotation{
+  opacity: 0.7;
+}
+
+.hyperaudio-transcript .read {
+  color: #666; 
+}
+
+.hyperaudio-transcript .active > .active {
+  /* color: #000; */
+}
+
+.hyperaudio-transcript .unread {
+  color: #CCC;
+
+.hyperaudio-transcript article section p{
+  display: block;
+  margin: 0 auto;
+  padding: 0 auto;
+}
+
+[data-m] {
+  cursor: pointer;
+}
+
