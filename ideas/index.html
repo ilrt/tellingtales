@@ -555,6 +555,28 @@
         </div>
     </footer>
 
+    <!-- Image Fullscreen Modal -->
+    <div class="modal fade fullscreen-modal" id="imageModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content bg-transparent border-0">
+          <div class="modal-header border-0" style="z-index:2;">
+            <h5 class="modal-title text-white" id="imageModalLabel">Design Mockup</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body d-flex justify-content-center align-items-center p-0" style="height:100vh;">
+            <img id="modalImage" src="" alt="" class="img-fluid" style="max-width:100vw; max-height:100vh; object-fit:contain; box-shadow:0 0 40px #000;">
+          </div>
+          <div class="modal-footer border-0 bg-transparent" style="z-index:2;">
+            <p id="modalDescription" class="text-white me-auto mb-0"></p>
+            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="downloadImage()">
+              <i class="fas fa-download me-2"></i>Download
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>

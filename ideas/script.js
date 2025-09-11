@@ -121,71 +121,29 @@ function initTooltips() {
 
 // Modal gallery for mockup images
 function initModalGallery() {
-    const mockupImages = document.querySelectorAll('.mockup-image');
+    const imageModal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('imageModalLabel');
+    const modalDescription = document.getElementById('modalDescription');
     
-    // Create enhanced modal HTML
-    const modalHTML = `
-        <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-xl modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="imageModalLabel">Design Mockup</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body text-center p-0">
-                        <img id="modalImage" src="" alt="" class="img-fluid w-100" style="max-height: 80vh; object-fit: contain;">
-                    </div>
-                    <div class="modal-footer">
-                        <p id="modalDescription" class="text-muted me-auto mb-0"></p>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" onclick="downloadImage()">
-                            <i class="fas fa-download me-2"></i>Download
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-    
-    // Add modal to page if it doesn't exist
-    if (!document.getElementById('imageModal')) {
-        document.body.insertAdjacentHTML('beforeend', modalHTML);
-    }
-    
-    // Add click handlers to mockup images
-    mockupImages.forEach(img => {
-        img.style.cursor = 'pointer';
-        img.classList.add('mockup-clickable');
-        
+    document.querySelectorAll('.mockup-image').forEach(img => {
         img.addEventListener('click', function() {
-            const modal = new bootstrap.Modal(document.getElementById('imageModal'));
-            const modalImage = document.getElementById('modalImage');
-            const modalTitle = document.getElementById('imageModalLabel');
-            const modalDescription = document.getElementById('modalDescription');
-            
+            // Set new image/text directly without clearing first
             modalImage.src = this.src;
             modalImage.alt = this.alt;
             modalTitle.textContent = this.alt;
-            
-            // Store current image for download
             window.currentModalImage = this.src;
-            
-            // Get description from card text
             const cardText = this.closest('.card').querySelector('.card-text');
             modalDescription.textContent = cardText ? cardText.textContent.trim() : '';
-            
-            modal.show();
         });
-        
-        // Add hover effect
-        img.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.02)';
-            this.style.transition = 'transform 0.3s ease';
-        });
-        
-        img.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
-        });
+    });
+    
+    // Only clear image when modal is completely hidden
+    imageModal.addEventListener('hidden.bs.modal', function () {
+        modalImage.src = '';
+        modalImage.alt = '';
+        modalTitle.textContent = '';
+        modalDescription.textContent = '';
     });
 }
 
@@ -229,9 +187,9 @@ function hideLoading(element, content) {
     element.innerHTML = content;
 }
 
-// Error handling for images
+// Error handling for images - exclude modal image to prevent constant errors
 document.addEventListener('error', function(e) {
-    if (e.target.tagName === 'IMG') {
+    if (e.target.tagName === 'IMG' && e.target.id !== 'modalImage') {
         e.target.style.display = 'none';
         console.warn('Image failed to load:', e.target.src);
     }
@@ -311,4 +269,30 @@ function shareAnalysis() {
 // Add these functions to window for global access
 window.printPage = printPage;
 window.shareAnalysis = shareAnalysis;
+
+// Add custom CSS for fullscreen modal
+(function addFullscreenModalCSS() {
+    const style = document.createElement('style');
+    style.innerHTML = `
+        .fullscreen-modal .modal-dialog {
+            width: 100vw;
+            max-width: 100vw;
+            height: 100vh;
+            margin: 0;
+        }
+        .fullscreen-modal .modal-content {
+            background: rgba(0,0,0,0.95);
+            border-radius: 0;
+            min-height: 100vh;
+            box-shadow: none;
+        }
+        .fullscreen-modal .modal-header, .fullscreen-modal .modal-footer {
+            background: transparent;
+        }
+        .fullscreen-modal .btn-close {
+            filter: invert(1);
+        }
+    `;
+    document.head.appendChild(style);
+})();
 
