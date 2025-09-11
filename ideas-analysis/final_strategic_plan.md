@@ -81,13 +81,13 @@ Our visual mockups demonstrate:
 
 ## Implementation Timeline
 
-### Phase 1 (Months 1-6): Foundation
+### Phase 1: Foundation
 - Initial development on St. Lucia content and features
 - Basic community forum and user registration
 - Launch of improved website design and navigation
-### Phase 2 (Months 7-12): Expansion
+### Phase 2: Expansion
 - Barbados and Puerto Rico content addition
-### Phase 3 (Months 13-18): Maturation
+### Phase 3: Maturation
 - Cuba and Haiti content integration
 - User-generated content platform
 - Advanced gamification features

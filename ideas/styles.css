@@ -45,6 +45,27 @@
     z-index: 2;
 }
 
+/* Hero Section Buttons */
+.hero-section .btn {
+    cursor: pointer !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    z-index: 10;
+    position: relative;
+    pointer-events: auto !important;
+    display: inline-block;
+}
+
+.hero-section .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-decoration: none !important;
+}
+
+.hero-section .btn:active {
+    transform: translateY(0);
+}
+
 /* Feature Icons */
 .feature-icon {
     width: 60px;
@@ -137,6 +158,16 @@
 /* Smooth Scrolling */
 html {
     scroll-behavior: smooth;
+}
+
+/* Ensure all anchor links are clickable */
+a[href^="#"] {
+    cursor: pointer !important;
+    text-decoration: none;
+}
+
+a[href^="#"]:hover {
+    text-decoration: none;
 }
 
 /* Navigation */

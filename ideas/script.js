@@ -12,28 +12,51 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Smooth scrolling for navigation links
 function initSmoothScrolling() {
-    const navLinks = document.querySelectorAll('a[href^="#"]');
-    
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            
+    // Get all anchor links that start with #
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
             
-            if (targetSection) {
-                const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
+            // Skip if it's just a hash (#) or empty
+            if (targetId === '#' || targetId === '') {
+                return;
+            }
+            
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                e.preventDefault();
                 
+                // Calculate position accounting for fixed navbar
+                const navbarHeight = document.querySelector('.navbar').offsetHeight || 80;
+                const targetPosition = targetElement.offsetTop - navbarHeight;
+                
+                // Smooth scroll
                 window.scrollTo({
-                    top: offsetTop,
+                    top: targetPosition,
                     behavior: 'smooth'
                 });
                 
-                // Close mobile menu if open
-                const navbarCollapse = document.querySelector('.navbar-collapse');
-                if (navbarCollapse.classList.contains('show')) {
-                    const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                // Close mobile navbar if open
+                const navbarToggle = document.querySelector('.navbar-collapse');
+                if (navbarToggle && navbarToggle.classList.contains('show')) {
+                    const bsCollapse = bootstrap.Collapse.getInstance(navbarToggle) || new bootstrap.Collapse(navbarToggle);
                     bsCollapse.hide();
+                }
+            }
+        });
+    });
+    
+    // Fallback: make sure buttons work with basic functionality
+    document.querySelectorAll('.hero-section .btn').forEach(btn => {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             }
         });

@@ -92,16 +92,16 @@ To streamline the process of adding and managing content, we recommend implement
 
 We recommend a phased approach to implementing these recommendations, allowing for a gradual and sustainable evolution of the website.
 
-*   **Phase 1 (3-6 months):**
+*   **Phase 1:**
     *   Website redesign and technology stack upgrade.
     *   Implementation of a headless CMS.
     *   Content development for Jamaica and Trinidad & Tobago.
     *   Enhanced interactive map with multi-island navigation.
-*   **Phase 2 (6-12 months):**
+*   **Phase 2:**
     *   Content development for Barbados and Puerto Rico.
     *   Implementation of illustrated storybooks and interactive narratives.
     *   Development of community forum and gamification features.
-*   **Phase 3 (12-18 months):**
+*   **Phase 3:**
     *   Content development for Cuba and Haiti.
     *   Development of animated shorts.
     *   Integration of user-generated content features.
